@@ -11,14 +11,16 @@ import { WeatherApiService } from '../services/weather-api.service';
 export class WeatherComponent implements OnInit {
 
   weather: Weather;
+  location: string = '';
 
   constructor(private weatherApiService: WeatherApiService) { }
 
   ngOnInit(): void {
   }
 
+  //gets the weather for given location
   getWeather() {
-    this.weatherApiService.getWeather('Amsterdam').subscribe(
+    this.weatherApiService.getWeather(this.location).subscribe(
       res => {
         this.weather = new Weather();
         this.weather.desc = res.weather[0].description;
@@ -30,5 +32,4 @@ export class WeatherComponent implements OnInit {
       }
     )
   }
-
 }

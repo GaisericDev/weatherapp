@@ -1,1 +1,10 @@
+<div *ngIf="weather">
+    <div>{{weather.temp}}</div>
+    <div>{{weather.desc}}</div>
+    <div>{{weather.windSpeed}}</div>
+    <div>{{weather.direction}}</div>
+    <div>{{weather.humidity}}</div>
+    <div>{{weather.pressure}}</div>
+</div>
+<input type="text" placeholder="Enter location..." [(ngModel)]="location">
 <button (click)="getWeather()">Test</button>

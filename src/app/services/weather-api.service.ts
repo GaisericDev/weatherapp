@@ -14,9 +14,6 @@ export class WeatherApiService {
 
   //get weather based on location
   getWeather(location: string): Observable<any> {
-    // return this.http.get<Weather[]>(`${this.url}${location}${this.key}`).pipe(
-    //   map((data: any[]) => data.map((item) => this.adapter.adapt(item)))
-    // );
     return this.http.get(`${this.url}${location}${this.key}`);
   }
 }
