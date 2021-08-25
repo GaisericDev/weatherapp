@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
+import { Weather } from '../models/weather.model';
+import { WeatherApiService } from '../services/weather-api.service';
 
 @Component({
   selector: 'app-weather',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
-  constructor() { }
+  weather: Subscription;
+
+  constructor(private weatherApiService: WeatherApiService) { }
 
   ngOnInit(): void {
+  }
+
+  getWeather() {
+    this.weatherApiService.getWeather('Amsterdam').subscribe(response => console.log(response));
   }
 
 }
