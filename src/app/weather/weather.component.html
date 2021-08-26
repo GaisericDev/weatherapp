@@ -1,15 +1,21 @@
-<div *ngIf="weather">
-    <div>temp: {{weather.temp-272.15}}°C</div>
+<!-- <div *ngIf="weather">
+    <div>{{location}}</div>
+    <div>{{weather.date}}</div>
+    <div>temp: {{weather.temp}}°C</div>
     <div>{{weather.desc}}</div>
-    <div>wind: {{weather.windSpeed*3.6}} km/h</div>
+    <div>wind: {{weather.windSpeed}} km/h</div>
     <div>wind direction: {{weather.direction}} degrees</div>
     <div>humidity: {{weather.humidity}}%</div>
     <div>pressure: {{weather.pressure}}hpa</div>
 </div>
 <div>
     <input type="text" placeholder="Enter location..." [(ngModel)]="location">
-    <button (click)="getWeather()">Test</button>
+    <button mat-button (click)="getWeather()">Test</button>
 </div>
 <div>
     <mat-slide-toggle [(ngModel)]="isDarkMode" (click)="toggleDarkMode()"></mat-slide-toggle>
+</div> -->
+<div id="weatherMain">
+    <div class="weatherRow">{{location}}</div>
+    <div class="weatherRow">{{date}}</div>
 </div>

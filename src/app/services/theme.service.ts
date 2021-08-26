@@ -14,6 +14,7 @@ export class ThemeService {
 
   //initialize the theme
   initTheme() {
+
     this.getColorTheme();
     this.renderer.addClass(document.body, this.colorTheme);
   }
@@ -38,7 +39,7 @@ export class ThemeService {
   //get theme from localstorage
   private getColorTheme() {
     if (localStorage.getItem('userTheme')) {
-      this.colorTheme = localStorage.getItem('user-theme');
+      this.colorTheme = localStorage.getItem('userTheme');
     }
     else {
       this.colorTheme = 'lightMode';

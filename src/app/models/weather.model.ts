@@ -6,5 +6,6 @@ export class Weather {
     public temp: number;
     public humidity: number;
     public pressure: number;
-    public direction: number
+    public direction: number;
+    public date: Date;
 }

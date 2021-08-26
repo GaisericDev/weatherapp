@@ -28,6 +28,8 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
 
 .lightMode{
   @include angular-material-theme($app-light-theme);
+  background-color: #F5F5F5;
+  color: rgba(3, 7, 11, 0.86);
 }
 
 // following section is for dark mode.
@@ -35,6 +37,8 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
 $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 .darkMode {
   @include angular-material-theme($app-dark-theme);
+  background-color: rgba(3, 7, 11, 0.86);
+  color: rgba(245, 245, 245, 0.88);
 }
 
 html,body{
@@ -43,4 +47,15 @@ html,body{
 
 body{
   margin: 0;
+  font-family: Montserrat;
+}
+
+#weatherMain{
+  display: block;
+}
+
+.row{
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
 }
