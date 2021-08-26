@@ -14,7 +14,7 @@ export class WeatherComponent implements OnInit {
   location: string = 'Amsterdam';
   date: string;
   isDarkMode: boolean;
-
+  directionTxt: string = '';
   constructor(
     private weatherApiService: WeatherApiService,
     private themeService: ThemeService
@@ -38,6 +38,7 @@ export class WeatherComponent implements OnInit {
         this.weather.temp = parseInt((res.main.temp - 272.15).toFixed(2));
         this.weather.windSpeed = parseInt((res.wind.speed * 3.6).toFixed(0));
         this.weather.direction = parseInt(res.wind.deg);
+        //format date
         this.weather.date = new Date();
         this.date = (this.weather.date.toLocaleString('en-us', {
           weekday: 'long',
@@ -45,8 +46,17 @@ export class WeatherComponent implements OnInit {
           year: 'numeric',
           day: 'numeric',
         }));
+        //turn degrees into wind directions
+        this.directionTxt = this.degToDirections(this.weather.direction);
       }
     )
+  }
+
+  //turns degrees to cardinal directions
+  degToDirections(deg: number) {
+    let val = Math.floor((deg / 22.5) + 0.5);
+    let arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    return arr[(val % 16)];
   }
   //toggles dark mode / light mode using service
   toggleDarkMode() {

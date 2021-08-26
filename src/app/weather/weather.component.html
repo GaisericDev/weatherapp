@@ -18,4 +18,11 @@
 <div id="weatherMain">
     <div class="weatherRow">{{location}}</div>
     <div class="weatherRow">{{date}}</div>
+    <div *ngIf="weather">
+        <div class="weatherRow">{{weather.temp}}°C</div>
+        <div class="weatherRow">{{weather.desc}}</div>
+        <div class="weatherRow">{{weather.windSpeed}} km/h {{directionTxt}}</div>
+        <div class="weatherRow">{{weather.humidity}}%</div>
+        <div class="weatherRow">{{weather.pressure}}hpa</div>
+    </div>
 </div>
