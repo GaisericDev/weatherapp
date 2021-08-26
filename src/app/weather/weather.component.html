@@ -6,5 +6,10 @@
     <div>humidity: {{weather.humidity}}%</div>
     <div>pressure: {{weather.pressure}}hpa</div>
 </div>
-<input type="text" placeholder="Enter location..." [(ngModel)]="location">
-<button (click)="getWeather()">Test</button>
+<div>
+    <input type="text" placeholder="Enter location..." [(ngModel)]="location">
+    <button (click)="getWeather()">Test</button>
+</div>
+<div>
+    <mat-slide-toggle [(ngModel)]="isDarkMode" (click)="toggleDarkMode()"></mat-slide-toggle>
+</div>

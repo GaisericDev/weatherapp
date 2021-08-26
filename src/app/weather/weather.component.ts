@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, Subscription } from 'rxjs';
 import { Weather } from '../models/weather.model';
 import { WeatherApiService } from '../services/weather-api.service';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-weather',
@@ -12,8 +12,14 @@ export class WeatherComponent implements OnInit {
 
   weather: Weather;
   location: string = '';
-
-  constructor(private weatherApiService: WeatherApiService) { }
+  isDarkMode: boolean;
+  constructor(
+    private weatherApiService: WeatherApiService,
+    private themeService: ThemeService
+  ) {
+    this.themeService.initTheme();
+    this.isDarkMode = this.themeService.isDarkMode();
+  }
 
   ngOnInit(): void {
   }
@@ -31,5 +37,10 @@ export class WeatherComponent implements OnInit {
         this.weather.direction = res.wind.deg;
       }
     )
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = this.themeService.isDarkMode();
+    this.isDarkMode ? this.themeService.update('lightMode') : this.themeService.update('darkMode');
   }
 }
