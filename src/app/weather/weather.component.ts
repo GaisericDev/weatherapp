@@ -14,6 +14,7 @@ export class WeatherComponent implements OnInit {
   location: string = 'Amsterdam';
   date: string;
   isDarkMode: boolean;
+  mode: string;
   directionTxt: string = '';
   constructor(
     private weatherApiService: WeatherApiService,
@@ -21,6 +22,7 @@ export class WeatherComponent implements OnInit {
   ) {
     this.themeService.initTheme();
     this.isDarkMode = this.themeService.isDarkMode();
+    this.isDarkMode ? this.mode = 'dark' : this.mode = 'light';
   }
 
   ngOnInit(): void {
@@ -48,6 +50,8 @@ export class WeatherComponent implements OnInit {
         }));
         //turn degrees into wind directions
         this.directionTxt = this.degToDirections(this.weather.direction);
+        //get weather icon
+        this.weather.icon = res.weather[0].icon;
       }
     )
   }

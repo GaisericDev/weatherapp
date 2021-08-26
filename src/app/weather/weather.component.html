@@ -15,14 +15,18 @@
 <div>
     <mat-slide-toggle [(ngModel)]="isDarkMode" (click)="toggleDarkMode()"></mat-slide-toggle>
 </div> -->
-<div id="weatherMain">
-    <div class="weatherRow">{{location}}</div>
-    <div class="weatherRow">{{date}}</div>
-    <div *ngIf="weather">
-        <div class="weatherRow">{{weather.temp}}°C</div>
-        <div class="weatherRow">{{weather.desc}}</div>
-        <div class="weatherRow">{{weather.windSpeed}} km/h {{directionTxt}}</div>
-        <div class="weatherRow">{{weather.humidity}}%</div>
-        <div class="weatherRow">{{weather.pressure}}hpa</div>
+<div class="weatherRow" style="font-size: 30px; margin-top: 46px;">{{location}}</div>
+<div class="weatherRow" style="font-size: 18px; margin-top: 11px;">{{date}}</div>
+<div *ngIf="weather">
+    <div class="weatherRow" style="margin-top: 40px;">
+        <!--192x120?-->
+        <img src="../../assets/img/{{weather.icon}}-{{mode}}.svg">
     </div>
+    <div class="weatherRow" style="font-size: 60px;">{{weather.temp}}°C</div>
+    <div class="weatherRow" id="description" style="font-size: 30px;">{{weather.desc | titlecase}}</div>
+
+
+    <div class="weatherRow" style="font-size: 20px;">{{weather.windSpeed}} km/h {{directionTxt}}</div>
+    <div class="weatherRow" style="font-size: 20px;">{{weather.humidity}}%</div>
+    <div class="weatherRow" style="font-size: 20px;">{{weather.pressure}}hpa</div>
 </div>

@@ -30,6 +30,9 @@ $app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
   @include angular-material-theme($app-light-theme);
   background-color: #F5F5F5;
   color: rgba(3, 7, 11, 0.86);
+  #description{
+    color: rgba(3, 7, 11, 0.6);
+  }
 }
 
 // following section is for dark mode.
@@ -39,6 +42,9 @@ $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
   @include angular-material-theme($app-dark-theme);
   background-color: rgba(3, 7, 11, 0.86);
   color: rgba(245, 245, 245, 0.88);
+  #description{
+    color: rgba(255, 255, 255, 0.6)
+  }
 }
 
 html,body{
@@ -50,11 +56,7 @@ body{
   font-family: Montserrat;
 }
 
-#weatherMain{
-  display: block;
-}
-
-.row{
+.weatherRow{
   display: block;
   margin: 0 auto;
   width: fit-content;

@@ -8,4 +8,5 @@ export class Weather {
     public pressure: number;
     public direction: number;
     public date: Date;
+    public icon: any;
 }
