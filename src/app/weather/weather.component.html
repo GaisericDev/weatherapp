@@ -1,10 +1,10 @@
 <div *ngIf="weather">
-    <div>{{weather.temp}}</div>
+    <div>temp: {{weather.temp-272.15}}°C</div>
     <div>{{weather.desc}}</div>
-    <div>{{weather.windSpeed}}</div>
-    <div>{{weather.direction}}</div>
-    <div>{{weather.humidity}}</div>
-    <div>{{weather.pressure}}</div>
+    <div>wind: {{weather.windSpeed*3.6}} km/h</div>
+    <div>wind direction: {{weather.direction}} degrees</div>
+    <div>humidity: {{weather.humidity}}%</div>
+    <div>pressure: {{weather.pressure}}hpa</div>
 </div>
 <input type="text" placeholder="Enter location..." [(ngModel)]="location">
 <button (click)="getWeather()">Test</button>
