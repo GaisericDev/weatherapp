@@ -8,7 +8,6 @@ $bg-dark: rgba(3, 7, 11, 0.86);
 $txt-primary-dark: rgba(245, 245, 245, 0.88);
 $txt-secondary-dark: rgba(255, 255, 255, 0.6);
 .lightMode{
-  // @include angular-material-theme($app-light-theme);
   background-color: $bg-light;
   color: $txt-primary-light;
   #description{
@@ -16,11 +15,7 @@ $txt-secondary-dark: rgba(255, 255, 255, 0.6);
   }
 }
 
-// following section is for dark mode.
-// use appropriate class name for darkMode
-// $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 .darkMode {
-  // @include angular-material-theme($app-dark-theme);
   background-color: $bg-dark;
   color: $txt-primary-dark;
   #description{
