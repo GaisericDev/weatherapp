@@ -1,6 +1,7 @@
 export class Weather {
     constructor
         () { }
+    public name: string;
     public desc: string;
     public windSpeed: number;
     public temp: number;
@@ -8,5 +9,6 @@ export class Weather {
     public pressure: number;
     public direction: number;
     public date: Date;
-    public icon: any;
+    public icon: string;
+    public country: string;
 }

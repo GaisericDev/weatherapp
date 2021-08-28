@@ -3,7 +3,6 @@ import { Weather } from '../models/weather.model';
 import { WeatherApiService } from '../services/weather-api.service';
 import { ThemeService } from '../services/theme.service';
 
-
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -11,11 +10,15 @@ import { ThemeService } from '../services/theme.service';
 })
 export class WeatherComponent implements OnInit {
   weather: Weather;
-  location: string = 'Amsterdam';
+  location: string = '';
   date: string;
   isDarkMode: boolean;
   mode: string;
   directionTxt: string = '';
+  //only for debugging, need to remove later
+  fullData: object;
+  //---
+
   constructor(
     private weatherApiService: WeatherApiService,
     private themeService: ThemeService
@@ -26,14 +29,16 @@ export class WeatherComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWeather();
+    this.getWeather('Amsterdam');
   }
 
   //gets the weather for given location
-  getWeather() {
-    this.weatherApiService.getWeather(this.location).subscribe(
+  getWeather(location: string) {
+    this.weatherApiService.getWeather(location).subscribe(
       res => {
+        this.fullData = res;
         this.weather = new Weather();
+        this.weather.name = res.name;
         this.weather.desc = res.weather[0].description;
         this.weather.humidity = parseInt(res.main.humidity.toFixed(0));
         this.weather.pressure = parseInt(res.main.pressure);
@@ -52,6 +57,9 @@ export class WeatherComponent implements OnInit {
         this.directionTxt = this.degToDirections(this.weather.direction);
         //get weather icon
         this.weather.icon = res.weather[0].icon;
+        //process location
+        this.weather.country = res.sys.country;
+        this.location = this.processLocation(this.weather.name, this.weather.country);
       }
     )
   }
@@ -66,5 +74,21 @@ export class WeatherComponent implements OnInit {
   toggleDarkMode() {
     this.isDarkMode = this.themeService.isDarkMode();
     this.isDarkMode ? this.themeService.update('lightMode') : this.themeService.update('darkMode');
+    this.isDarkMode ? this.mode = 'light' : this.mode = 'dark';
+  }
+  //process location displayed by removing spaces from left and right side and checking if country was input
+  processLocation(location: string, country: string) {
+    let newLocation = location.split(',');
+    let processedLocation = '';
+    for (let i = 0; i < newLocation.length; i++) {
+      newLocation[i] = newLocation[i].trim();
+    }
+    if (newLocation.length > 1) {
+      processedLocation = newLocation.join(', ');
+    }
+    else {
+      processedLocation = `${location}, ${country}`;
+    }
+    return processedLocation;
   }
 }

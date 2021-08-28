@@ -1,49 +1,36 @@
-@import '~@angular/material/theming';
-@include mat-core();
+//light mode colors
+$bg-light : #F5F5F5;
+$txt-primary-light: rgba(3, 7, 11, 0.86);
+$txt-secondary-light: rgba(3, 7, 11, 0.6);
 
-$mat-primary-scheme: (
-  100: #c7c7c7,
-  500: #03070b,
-  700: #512da8,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: #ffffff,
-    700: #ffffff,
-  )
-);
-$mat-accent-scheme: (
-  100: #ffe57f,
-  500: #ffd740,
-  700: #ffc400,
-  contrast: (
-    100: rgba(0,0,0,0.87),
-    500: rgba(0,0,0,0.87),
-    700: #ffffff,
-  )
-);
-$mat-primary-palette: mat-palette($mat-primary-scheme);
-$mat-accent-palette: mat-palette($mat-accent-scheme);
-
-$app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
-
+//dark mode colors
+$bg-dark: rgba(3, 7, 11, 0.86);
+$txt-primary-dark: rgba(245, 245, 245, 0.88);
+$txt-secondary-dark: rgba(255, 255, 255, 0.6);
 .lightMode{
-  @include angular-material-theme($app-light-theme);
-  background-color: #F5F5F5;
-  color: rgba(3, 7, 11, 0.86);
+  // @include angular-material-theme($app-light-theme);
+  background-color: $bg-light;
+  color: $txt-primary-light;
   #description{
-    color: rgba(3, 7, 11, 0.6);
+    color: $txt-secondary-light;
   }
 }
 
 // following section is for dark mode.
 // use appropriate class name for darkMode
-$app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
+// $app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
 .darkMode {
-  @include angular-material-theme($app-dark-theme);
-  background-color: rgba(3, 7, 11, 0.86);
-  color: rgba(245, 245, 245, 0.88);
+  // @include angular-material-theme($app-dark-theme);
+  background-color: $bg-dark;
+  color: $txt-primary-dark;
   #description{
-    color: rgba(255, 255, 255, 0.6)
+    color: $txt-secondary-dark;
+  }
+  .slider:before{
+    background-color: $bg-dark;
+  }
+  #weatherInput{
+    color:$bg-light;
   }
 }
 
@@ -57,7 +44,186 @@ body{
 }
 
 .weatherRow{
-  display: block;
+  display: flex;
+  flex-direction:row;
   margin: 0 auto;
   width: fit-content;
+  overflow-wrap:break-word;
 }
+
+#description{
+  font-size: 30px;
+}
+
+#weatherImgContainer{
+  height: 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.weatherImg{
+  max-height: 135px;
+  width: 190px;
+}
+
+#weatherInput {
+  width: 230px;
+  height: 50px;
+  border: none;
+  flex-grow:2;
+  font-family: montserrat;
+  font-size: 20px;
+  padding: 0 20px 0 20px;
+  background-color: rgba(0,0,0,0);
+}
+
+#weatherInput:focus-visible{
+  outline: none;
+}
+
+.weatherButton{
+  height: 50px;
+  width: 50px;
+  border: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.weatherButton:focus {
+  animation: rotate 1s ease-in-out 0s;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.weatherForm{
+  border: 1px solid #707070;
+  border-radius: 16px;
+}
+
+@mixin weatherIco{
+  width: 30px;
+  height: 30px;
+}
+
+.weatherBtnIco{
+  @include weatherIco();
+}
+
+.weatherBtnIco:hover{
+  width: 35px;
+  height: 35px;
+  transition-duration: 0.4s;
+}
+
+.detailsContainer{
+  align-items: left;
+  margin: 0 auto;
+  border: 1px solid #707070;
+  border-radius: 16px;
+  margin-top: 40px;
+  height: 180px;
+  width: 280px;
+  padding: 0 20px 0 20px;
+}
+
+.weatherIco{
+  @include weatherIco();
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.weatherDetail{
+  display: inline-block;
+}
+
+.detailsRow{
+  display: flex;
+  flex-direction:row;
+  width: fit-content;
+  overflow-wrap:break-word;
+  margin: 25px 0 0 25px;
+}
+
+.sliderRow{
+  display: flex;
+  margin: 0 auto;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.toggleIco{
+  @include weatherIco();
+}
+
+.modeToggle{
+  display: inline-block;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $bg-dark;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 5px;
+  background-color: $bg-light;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: $bg-light;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+

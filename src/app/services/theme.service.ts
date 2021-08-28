@@ -25,7 +25,6 @@ export class ThemeService {
     const previousColorTheme = (theme === 'darkMode' ? 'lightMode' : 'darkMode');
     this.renderer.removeClass(document.body, previousColorTheme);
     this.renderer.addClass(document.body, theme);
-
   }
   //return true if dark mode is active
   isDarkMode() {

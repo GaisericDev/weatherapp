@@ -1,32 +1,37 @@
-<!-- <div *ngIf="weather">
-    <div>{{location}}</div>
-    <div>{{weather.date}}</div>
-    <div>temp: {{weather.temp}}°C</div>
-    <div>{{weather.desc}}</div>
-    <div>wind: {{weather.windSpeed}} km/h</div>
-    <div>wind direction: {{weather.direction}} degrees</div>
-    <div>humidity: {{weather.humidity}}%</div>
-    <div>pressure: {{weather.pressure}}hpa</div>
-</div>
-<div>
-    <input type="text" placeholder="Enter location..." [(ngModel)]="location">
-    <button mat-button (click)="getWeather()">Test</button>
-</div>
-<div>
-    <mat-slide-toggle [(ngModel)]="isDarkMode" (click)="toggleDarkMode()"></mat-slide-toggle>
-</div> -->
-<div class="weatherRow" style="font-size: 30px; margin-top: 46px;">{{location}}</div>
+<div class="weatherRow" style="font-size: 30px; margin-top: 46px;"><img
+        src="../../assets/img/location-{{mode}}.svg">{{location}}</div>
 <div class="weatherRow" style="font-size: 18px; margin-top: 11px;">{{date}}</div>
 <div *ngIf="weather">
-    <div class="weatherRow" style="margin-top: 40px;">
-        <!--192x120?-->
-        <img src="../../assets/img/{{weather.icon}}-{{mode}}.svg">
+    <div class="weatherRow" id="weatherImgContainer">
+        <img class="weatherImg" src="../../assets/img/{{weather.icon}}-{{mode}}.svg">
     </div>
-    <div class="weatherRow" style="font-size: 60px;">{{weather.temp}}°C</div>
-    <div class="weatherRow" id="description" style="font-size: 30px;">{{weather.desc | titlecase}}</div>
+    <div class="weatherRow" style="font-size: 60px; margin-bottom: -10px;">{{weather.temp}}°C</div>
+    <div class="weatherRow" id="description">{{weather.desc | titlecase}}</div>
+</div>
+<form class="weatherRow weatherForm" autocomplete="off" style="margin-top: 17px;">
+    <input type="text" id="weatherInput" #weatherLoc placeholder="Enter location..."
+        (keyup.enter)="getWeather(weatherLoc.value)" limit="20">
+    <button class="weatherButton" (click)="getWeather(weatherLoc.value)"><img src="../../assets/img/nearme-{{mode}}.svg"
+            class="weatherBtnIco"></button>
+</form>
 
+<div *ngIf="weather" class="detailsContainer">
+    <div class="detailsRow"><img class="weatherIco" src="../../assets/img/air-{{mode}}.svg">
+        <div class="weatherDetail" style="font-size: 20px;">{{weather.windSpeed}} km/h {{directionTxt}}</div>
+    </div>
+    <div class="detailsRow"><img class="weatherIco" src="../../assets/img/water-{{mode}}.svg">
+        <div class="weatherDetail" style="font-size: 20px;">{{weather.humidity}}%</div>
+    </div>
+    <div class="detailsRow"><img class="weatherIco" src="../../assets/img/meter-{{mode}}.svg">
+        <div class="weatherDetail" style="font-size: 20px;">{{weather.pressure}}hpa</div>
+    </div>
+</div>
 
-    <div class="weatherRow" style="font-size: 20px;">{{weather.windSpeed}} km/h {{directionTxt}}</div>
-    <div class="weatherRow" style="font-size: 20px;">{{weather.humidity}}%</div>
-    <div class="weatherRow" style="font-size: 20px;">{{weather.pressure}}hpa</div>
+<div class="sliderRow">
+    <img class=toggleIco src="../../assets/img/light-mode-{{mode}}.svg">
+    <label class="switch modeToggle">
+        <input type="checkbox" ngDefaultControl [(ngModel)]="isDarkMode" (click)="toggleDarkMode()">
+        <span class="slider round"></span>
+    </label>
+    <img class=toggleIco src="../../assets/img/dark-mode-{{mode}}.svg">
 </div>
