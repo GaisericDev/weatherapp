@@ -15,9 +15,6 @@ export class WeatherComponent implements OnInit {
   isDarkMode: boolean;
   mode: string;
   directionTxt: string = '';
-  //only for debugging, need to remove later
-  fullData: object;
-  //---
 
   constructor(
     private weatherApiService: WeatherApiService,
@@ -36,10 +33,9 @@ export class WeatherComponent implements OnInit {
   getWeather(location: string) {
     this.weatherApiService.getWeather(location).subscribe(
       res => {
-        this.fullData = res;
         this.weather = new Weather();
-        this.weather.name = res.name;
         this.weather.desc = res.weather[0].description;
+        this.weather.name = res.name;
         this.weather.humidity = parseInt(res.main.humidity.toFixed(0));
         this.weather.pressure = parseInt(res.main.pressure);
         this.weather.temp = parseInt((res.main.temp - 272.15).toFixed(2));
@@ -60,7 +56,15 @@ export class WeatherComponent implements OnInit {
         //process location
         this.weather.country = res.sys.country;
         this.location = this.processLocation(this.weather.name, this.weather.country);
+      },
+      //error handling, set error image and message
+      error => {
+        this.weather = new Weather();
+        this.weather.icon = '0x0';
+        this.weather.error = true;
+        this.location = 'Error';
       }
+
     )
   }
 

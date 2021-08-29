@@ -11,4 +11,5 @@ export class Weather {
     public date: Date;
     public icon: string;
     public country: string;
+    public error: boolean = false;
 }

@@ -7,6 +7,8 @@ $txt-secondary-light: rgba(3, 7, 11, 0.6);
 $bg-dark: rgba(3, 7, 11, 0.86);
 $txt-primary-dark: rgba(245, 245, 245, 0.88);
 $txt-secondary-dark: rgba(255, 255, 255, 0.6);
+
+//light mode style specifics
 .lightMode{
   background-color: $bg-light;
   color: $txt-primary-light;
@@ -15,6 +17,7 @@ $txt-secondary-dark: rgba(255, 255, 255, 0.6);
   }
 }
 
+//dark mode style specifics
 .darkMode {
   background-color: $bg-dark;
   color: $txt-primary-dark;
@@ -43,7 +46,7 @@ body{
   flex-direction:row;
   margin: 0 auto;
   width: fit-content;
-  overflow-wrap:break-word;
+  text-align: center;
 }
 
 #description{
@@ -55,7 +58,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .weatherImg{
@@ -85,13 +88,15 @@ body{
   background-color: rgba(0,0,0,0);
 }
 
-.weatherButton:focus {
-  animation: rotate 1s ease-in-out 0s;
+.weatherButton:focus, .weatherButton:focus-visible {
+  animation: rotate 0.75s ease-in-out 0s;
+  border: none;
+  outline: none;
 }
 
 @keyframes rotate {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to { transform: rotate(720deg); }
 }
 
 .weatherForm{
@@ -133,6 +138,7 @@ body{
 
 .weatherDetail{
   display: inline-block;
+  font-size: 20px;
 }
 
 .detailsRow{
@@ -217,6 +223,41 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+//specific styling for rows and contents
+
+//location row
+#locRow{
+  font-size: 30px; margin-top: 46px;
+}
+//location icon
+#locIco{
+  margin: 0;
+}
+//date
+#weatherDate{
+  font-size: 18px; margin-top: 11px;
+}
+//temp
+#weatherTemp{
+  font-size: 60px; margin-bottom: -10px;
+}
+//errorTop
+#errorTop{
+  font-size: 30px;
+}
+//errorBot
+#errorBot{
+  font-size: 20px;
+}
+//weather form
+#weatherForm{
+  margin-top: 17px;
+}
+
+
+
+
 
 
 
