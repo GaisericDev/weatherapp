@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class WeatherApiService {
   url = 'http://api.openweathermap.org/data/2.5/weather?q=';
-  key = '&appid=yourkeyhere';
+  key = '&appid=yourapikeyhere';
   constructor(private http: HttpClient) { }
   //get weather based on location
   getWeather(location: string): Observable<any> {
