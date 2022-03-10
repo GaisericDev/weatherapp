@@ -26,7 +26,7 @@ export class WeatherComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWeather('Amsterdam');
+    this.getWeather('New York');
   }
 
   //gets the weather for given location
